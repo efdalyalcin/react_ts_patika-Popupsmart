@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.scss';
+import SignIn from './components/SignIn/SignIn';
+import SignOut from './components/SignOut/SignOut';
+import Todos from './components/Todos/Todos';
 
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const handleSignIn = () => {
+    setIsSignedIn(!isSignedIn);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        {isSignedIn 
+          ? <SignOut handleSignIn={handleSignIn} />
+          : <SignIn handleSignIn={handleSignIn} />
+        }
+      </nav>
+      <main>
+        <Todos />
+      </main>
     </div>
   );
 }
