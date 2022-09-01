@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useCallback, useEffect, useState } from 'react';
+import { getTodos } from './api/getTodos';
 import './App.scss';
+import SignIn from './SignIn/SignIn';
 
 function App() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const loadTodos = useCallback(
+    async () => {
+      try {
+        const todosFromServer = await getTodos();
+
+        setTodos(todosFromServer);
+      } catch {
+        setTodos([]);
+        // error is handled with a turnary in the render
+      }
+    },
+    [],
+  );
+
+  useEffect(
+    () => {
+      loadTodos();
+    },
+    [loadTodos]
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SignIn />
+
+      {todos.map(todo => (
+        <div>
+          {todo.content}
+        </div>
+      ))}
     </div>
   );
 }
