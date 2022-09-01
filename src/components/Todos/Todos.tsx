@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getTodos } from '../../api/getTodos';
-import { Card, CardActions } from '@mui/material';
+import { deleteTodo, getTodos } from '../../api/api';
+import { Card, CardActions, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import './Todos.scss';
 
 export default function Todos() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -32,17 +33,23 @@ export default function Todos() {
     setIsEditOn(!isEditOn);
   };
 
-  // handle delete with API
-  const handleDelete = (id: number) => {
-    setTodos(todos.filter(todo => todo.id !== id));
+  const handleDelete = async (id: number) => {
+    await deleteTodo(id);
+    await loadTodos();
   }
 
   return (
-    <div>
+    <div className="Todos">
       {todos.map(todo => (
         <Card 
           variant="outlined"
           key={todo.id}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+
+          }}
         >
           <p>{todo.content}</p>
           <p>
@@ -52,14 +59,18 @@ export default function Todos() {
             }
           </p>
           <CardActions>
-            <button
+            <Button
               onClick={handleEdit}
+              variant="outlined"
             >
               <EditIcon />
-            </button>
-            <button onClick={() => handleDelete(todo.id)} >
+            </Button>
+            <Button 
+              onClick={() => handleDelete(todo.id)}
+              variant="outlined"
+            >
               <DeleteIcon />
-            </button>
+            </Button>
           </CardActions>
         </Card>
       ))}

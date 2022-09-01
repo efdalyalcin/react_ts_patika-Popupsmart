@@ -6,3 +6,10 @@ export const getTodos = async () => {
 
   return todos;
 };
+
+export const deleteTodo = async (todoId: number) => {
+  const response = await fetch(`${BASE_URL}/todos/${todoId}`,
+    { method: 'DELETE' });
+
+  return response.json();
+};
