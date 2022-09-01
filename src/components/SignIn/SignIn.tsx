@@ -25,7 +25,6 @@ const SignIn: React.FC<Props> = ({handleSignIn}) => {
       handleSignIn();
       setUserName('');
       setPassword('');
-
     }
   }
 

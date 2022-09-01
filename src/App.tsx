@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { getTodos } from './api/getTodos';
+import { useState } from 'react';
 import './App.scss';
 import SignIn from './components/SignIn/SignIn';
 import SignOut from './components/SignOut/SignOut';
+import Todos from './components/Todos/Todos';
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -11,41 +11,17 @@ function App() {
     setIsSignedIn(!isSignedIn);
   };
 
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  const loadTodos = useCallback(
-    async () => {
-      try {
-        const todosFromServer = await getTodos();
-
-        setTodos(todosFromServer);
-      } catch {
-        setTodos([]);
-        // error is handled with a turnary in the render
-      }
-    },
-    [],
-  );
-
-  useEffect(
-    () => {
-      loadTodos();
-    },
-    [loadTodos]
-  );
-
   return (
     <div className="App">
-      {isSignedIn 
-        ? <SignOut handleSignIn={handleSignIn} />
-        : <SignIn handleSignIn={handleSignIn} />
-      }
-
-      {todos.map(todo => (
-        <div>
-          {todo.content}
-        </div>
-      ))}
+      <nav>
+        {isSignedIn 
+          ? <SignOut handleSignIn={handleSignIn} />
+          : <SignIn handleSignIn={handleSignIn} />
+        }
+      </nav>
+      <main>
+        <Todos />
+      </main>
     </div>
   );
 }
