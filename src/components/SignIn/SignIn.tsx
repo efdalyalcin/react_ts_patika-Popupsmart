@@ -3,15 +3,30 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import './SignIn.scss';
 
-export default function SignIn() {
+type Props = {
+  handleSignIn: () => void;
+};
+
+const SignIn: React.FC<Props> = ({handleSignIn}) => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
+  const userNameLengthCheck = () => (
+    userName.length >= 3 
+      ? 'success'
+      : 'error'
+  );
+
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    localStorage.setItem("User Name", userName);
-    setUserName('');
-    setPassword('');
+    if (userName.length >= 3) {
+      localStorage.setItem("UserName", userName);
+  
+      handleSignIn();
+      setUserName('');
+      setPassword('');
+
+    }
   }
 
   return (
@@ -36,9 +51,12 @@ export default function SignIn() {
       <Button 
         variant="outlined"
         type="submit"
+        color={userNameLengthCheck()}
       >
         Sign In
       </Button>
     </form>
   )
 }
+
+export default SignIn;

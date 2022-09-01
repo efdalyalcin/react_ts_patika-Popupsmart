@@ -1,9 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getTodos } from './api/getTodos';
 import './App.scss';
-import SignIn from './SignIn/SignIn';
+import SignIn from './components/SignIn/SignIn';
+import SignOut from './components/SignOut/SignOut';
 
 function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const handleSignIn = () => {
+    setIsSignedIn(!isSignedIn);
+  };
+
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const loadTodos = useCallback(
@@ -29,7 +36,10 @@ function App() {
 
   return (
     <div className="App">
-      <SignIn />
+      {isSignedIn 
+        ? <SignOut handleSignIn={handleSignIn} />
+        : <SignIn handleSignIn={handleSignIn} />
+      }
 
       {todos.map(todo => (
         <div>
