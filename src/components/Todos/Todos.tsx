@@ -4,6 +4,7 @@ import { Card, CardActions, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Todos.scss';
+import Edit from '../Edit/Edit';
 
 export default function Todos() {
   const [todos, setTodos] = useState<Todo[]>([]);
