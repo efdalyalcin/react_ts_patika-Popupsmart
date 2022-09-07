@@ -13,3 +13,16 @@ export const deleteTodo = async (todoId: number) => {
 
   return response.json();
 };
+
+export const updateTodo = async (todoId: number, todo: Todo) => {
+  const response = await fetch(`${BASE_URL}/todos/${todoId}`,
+  {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify(todo),
+  });
+
+  return response.json();
+}

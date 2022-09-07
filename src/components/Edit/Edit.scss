@@ -1,0 +1,10 @@
+.Edit {
+  width: 400px;
+  margin: 0 auto;
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+  }
+}
