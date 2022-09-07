@@ -1,5 +1,6 @@
 import ReactDom from 'react-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 import { 
   FormControlLabel,
@@ -32,6 +33,25 @@ export default function Edit({
 }: Props) {
   const [newContent, setNewContent] = useState(content);
   const [newIsCompleted, setNewIsCompleted] = useState(isCompleted);
+  const [clickCount, setClickCount] = useState(0);
+
+  const countClick = () => {
+    setClickCount(() => clickCount + 1)
+  };
+
+  const ref = useDetectClickOutside(
+    { 
+      onTriggered: () => {
+        countClick();
+
+        if (clickCount > 0) {
+          closeModal();
+          setClickCount(0);
+        }
+      },
+      triggerKeys: ['Enter', 'Tab'] 
+    }
+  );
 
   const submitTodo = async () => {
     if (newContent) {
@@ -43,6 +63,7 @@ export default function Edit({
   
       await updateTodo(todoId, newTodo);
       closeModal();
+      setClickCount(0);
       await loadTodos();
     }
   };
@@ -60,6 +81,7 @@ export default function Edit({
           bgcolor: 'white',
           padding: '20px',
         }}
+        ref={ref}
       >
         <TextField
           id="outlined-name"
@@ -89,7 +111,7 @@ export default function Edit({
             variant="contained"
             type="button"
             color="error"
-            onClick={closeModal}
+            onClick={() => {closeModal(); setClickCount(0)}}
           >
             <CloseIcon />
           </Button>
