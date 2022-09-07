@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { deleteTodo, getTodos } from '../../api/api';
+import { getTodos } from '../../api/api';
 import './Todos.scss';
 import Todo from '../Todo/Todo';
 

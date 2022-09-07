@@ -1,6 +1,16 @@
 .Edit {
-  width: 400px;
-  margin: 0 auto;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(128,128,128, .5);
 
   &__buttons {
     display: grid;

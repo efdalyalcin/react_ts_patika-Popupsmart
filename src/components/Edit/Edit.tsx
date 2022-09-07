@@ -1,4 +1,6 @@
 import ReactDom from 'react-dom';
+import { useState } from 'react';
+
 import { 
   FormControlLabel,
   FormGroup,
@@ -7,7 +9,7 @@ import {
   Button
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { useState } from 'react';
+
 import { updateTodo } from '../../api/api';
 import './Edit.scss';
 
@@ -53,7 +55,12 @@ export default function Edit({
     <div
       className="Edit"
     >
-      <FormGroup>
+      <FormGroup
+        sx={{width: '400px',
+          bgcolor: 'white',
+          padding: '20px',
+        }}
+      >
         <TextField
           id="outlined-name"
           label="Content"
@@ -71,7 +78,7 @@ export default function Edit({
         />
         <div className="Edit__buttons">
           <Button 
-            variant="outlined"
+            variant="contained"
             type="submit"
             color="success"
             onClick={submitTodo}
@@ -79,7 +86,7 @@ export default function Edit({
             Update Todo
           </Button>
           <Button 
-            variant="outlined"
+            variant="contained"
             type="button"
             color="error"
             onClick={closeModal}
