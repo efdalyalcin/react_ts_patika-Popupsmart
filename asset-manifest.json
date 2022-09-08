@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react_ts-patika-Popupsmart/static/css/main.5f84e7f7.css",
-    "main.js": "/react_ts-patika-Popupsmart/static/js/main.c35b3dfe.js",
-    "index.html": "/react_ts-patika-Popupsmart/index.html",
-    "main.5f84e7f7.css.map": "/react_ts-patika-Popupsmart/static/css/main.5f84e7f7.css.map",
-    "main.c35b3dfe.js.map": "/react_ts-patika-Popupsmart/static/js/main.c35b3dfe.js.map"
+    "main.css": "/react_ts_patika-Popupsmart/static/css/main.5f84e7f7.css",
+    "main.js": "/react_ts_patika-Popupsmart/static/js/main.c35b3dfe.js",
+    "index.html": "/react_ts_patika-Popupsmart/index.html",
+    "main.5f84e7f7.css.map": "/react_ts_patika-Popupsmart/static/css/main.5f84e7f7.css.map",
+    "main.c35b3dfe.js.map": "/react_ts_patika-Popupsmart/static/js/main.c35b3dfe.js.map"
   },
   "entrypoints": [
     "static/css/main.5f84e7f7.css",
