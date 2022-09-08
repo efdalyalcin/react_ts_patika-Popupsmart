@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { getTodos } from '../../api/api';
 import './Todos.scss';
 import Todo from '../Todo/Todo';
+import AddTodo from '../AddTodo/AddTodo';
 
 export default function Todos() {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -27,12 +28,15 @@ export default function Todos() {
   );
 
   return (
-    <ul className="Todos">
-      {todos.map(todo => (
-        <li key={todo.id}>
-          <Todo todo={todo} loadTodos={loadTodos} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <AddTodo loadTodos={loadTodos} />
+      <ul className="Todos">
+        {todos.map(todo => (
+          <li key={todo.id}>
+            <Todo todo={todo} loadTodos={loadTodos} />
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
