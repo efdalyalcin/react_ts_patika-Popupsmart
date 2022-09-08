@@ -1,5 +1,5 @@
 import ReactDom from 'react-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
 import { 
@@ -48,8 +48,7 @@ export default function Edit({
           closeModal();
           setClickCount(0);
         }
-      },
-      triggerKeys: ['Enter', 'Tab'] 
+      }
     }
   );
 

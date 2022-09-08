@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import './App.scss';
 import SignIn from './components/SignIn/SignIn';
 import SignOut from './components/SignOut/SignOut';
 import Todos from './components/Todos/Todos';
+import './App.scss';
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);

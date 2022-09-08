@@ -26,3 +26,16 @@ export const updateTodo = async (todoId: number, todo: Todo) => {
 
   return response.json();
 }
+
+export const createTodo = async (todo: Todo) => {
+  const response = await fetch(`${BASE_URL}/todos`,
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: JSON.stringify(todo),
+  });
+
+  return response.json();
+}
